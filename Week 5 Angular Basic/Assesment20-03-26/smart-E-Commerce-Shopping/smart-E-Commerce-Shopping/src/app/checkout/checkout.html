@@ -1,0 +1,44 @@
+<div class="section">
+  <h2>Checkout</h2>
+
+  <form class="card">
+
+    <input [(ngModel)]="user.name" name="name" placeholder="Full Name">
+
+    <input type="email" [(ngModel)]="user.email" name="email" placeholder="Email">
+
+    <input type="number" [(ngModel)]="user.phone" name="phone" placeholder="Phone">
+
+    <p>Gender:</p>
+    <label><input type="radio" name="gender" [(ngModel)]="user.gender" value="Male"> Male</label>
+    <label><input type="radio" name="gender" [(ngModel)]="user.gender" value="Female"> Female</label>
+
+    <label><input type="checkbox"> Accept Terms</label>
+
+    <select [(ngModel)]="user.city" name="city">
+      <option value="">Select City</option>
+      <option>Jaipur</option>
+      <option>Delhi</option>
+    </select>
+
+    <input type="date">
+    <textarea placeholder="Instructions"></textarea>
+    <input type="file">
+
+    <p>Payment:</p>
+    <label><input type="radio" [(ngModel)]="user.payment" name="payment" value="card"> Card</label>
+    <label><input type="radio" [(ngModel)]="user.payment" name="payment" value="upi"> UPI</label>
+
+    <div *ngIf="user.payment === 'card'">
+      <input placeholder="Card Number">
+      <input placeholder="CVV">
+    </div>
+
+    <div *ngIf="user.payment === 'upi'">
+      <input placeholder="UPI ID">
+    </div>
+
+    <button type="button" (click)="placeOrder()">Place Order</button>
+
+  </form>
+</div>
