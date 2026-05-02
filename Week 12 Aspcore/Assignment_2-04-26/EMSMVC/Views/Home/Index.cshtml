@@ -1,0 +1,36 @@
+﻿@model List<EMSMVC.Models.Employee>
+
+<h2>Employees</h2>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <p style="color:red">@ViewBag.ErrorMessage</p>
+}
+
+<a href="/Home/Create">➕ Add Employee</a>
+
+<br /><br />
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var emp in Model)
+    {
+        <tr>
+            <td>@emp.Name</td>
+            <td>@emp.Email</td>
+            <td>@emp.Department</td>
+            <td>@emp.Salary</td>
+            <td>
+                <a href="/Home/Edit/@emp.Id">Edit</a> |
+                <a href="/Home/Delete/@emp.Id">Delete</a>
+            </td>
+        </tr>
+    }
+</table>

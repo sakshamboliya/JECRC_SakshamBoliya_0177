@@ -1,0 +1,6 @@
+@EMSinmemory_HostAddress = http://localhost:5109
+
+GET {{EMSinmemory_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,14 @@
+@model EMSMVC.Models.Employee
+
+<h2>Edit Employee</h2>
+
+<form method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+
+    <input name="Name" value="@Model.Name" /><br /><br />
+    <input name="Email" value="@Model.Email" /><br /><br />
+    <input name="Department" value="@Model.Department" /><br /><br />
+    <input name="Salary" value="@Model.Salary" /><br /><br />
+
+    <button type="submit">Update</button>
+</form>

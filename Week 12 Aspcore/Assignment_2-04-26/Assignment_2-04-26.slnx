@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="EMSAPI/EMSAPI.csproj" />
+  <Project Path="EMSMVC/EMSMVC.csproj" />
+</Solution>

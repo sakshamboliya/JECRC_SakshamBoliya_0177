@@ -1,0 +1,12 @@
+@model EMSMVC.Models.Employee
+
+<h2>Create Employee</h2>
+
+<form method="post">
+    <input name="Name" value="@Model?.Name" placeholder="Name" /><br /><br />
+    <input name="Email" value="@Model?.Email" placeholder="Email" /><br /><br />
+    <input name="Department" value="@Model?.Department" placeholder="Department" /><br /><br />
+    <input name="Salary" value="@Model?.Salary" placeholder="Salary" /><br /><br />
+
+    <button type="submit">Create</button>
+</form>

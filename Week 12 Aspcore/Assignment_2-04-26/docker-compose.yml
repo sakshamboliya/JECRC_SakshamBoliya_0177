@@ -1,0 +1,47 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Your_strong_password123"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/localhost/1433'"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  emsapi:
+    build:
+      context: .
+      dockerfile: EMSAPI/Dockerfile
+    container_name: emsapi
+    environment:
+      ASPNETCORE_ENVIRONMENT: Docker
+      ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=EMSDB;User Id=sa;Password=Your_strong_password123;TrustServerCertificate=True;"
+    ports:
+      - "5155:8080"
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+
+  emsmvc:
+    build:
+      context: .
+      dockerfile: EMSMVC/Dockerfile
+    container_name: emsmvc
+    environment:
+      ASPNETCORE_ENVIRONMENT: Docker
+      ApiSettings__EmployeeApiBaseUrl: "http://emsapi:8080/"
+    ports:
+      - "5000:8080"
+    depends_on:
+      - emsapi
+
+volumes:
+  sqlserver_data:
